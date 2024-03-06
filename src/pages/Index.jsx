@@ -1,5 +1,30 @@
-import { Box, Button, Heading, VStack, HStack, Divider } from "@chakra-ui/react";
+import { Box, Button, Heading, VStack, HStack, Divider, useDisclosure } from "@chakra-ui/react";
 import { FaPlus, FaPencilAlt, FaTrash, FaPrint } from "react-icons/fa";
+import ModalForm from "../components/ModalForm";
+
+const ActionButtons = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  return (
+    <>
+      <HStack spacing={3}>
+        <Button leftIcon={<FaPlus />} colorScheme="green" onClick={onOpen}>
+          Add New
+        </Button>
+        <Button leftIcon={<FaPencilAlt />} colorScheme="blue">
+          Update
+        </Button>
+        <Button leftIcon={<FaTrash />} colorScheme="red">
+          Delete
+        </Button>
+        <Button leftIcon={<FaPrint />} colorScheme="purple">
+          Print
+        </Button>
+      </HStack>
+      <ModalForm isOpen={isOpen} onClose={onClose} />
+    </>
+  );
+};
 
 const PageLayout = ({ title, children }) => (
   <Box p={5}>
@@ -9,22 +34,7 @@ const PageLayout = ({ title, children }) => (
   </Box>
 );
 
-const ActionButtons = () => (
-  <HStack spacing={3}>
-    <Button leftIcon={<FaPlus />} colorScheme="green">
-      Add New
-    </Button>
-    <Button leftIcon={<FaPencilAlt />} colorScheme="blue">
-      Update
-    </Button>
-    <Button leftIcon={<FaTrash />} colorScheme="red">
-      Delete
-    </Button>
-    <Button leftIcon={<FaPrint />} colorScheme="purple">
-      Print
-    </Button>
-  </HStack>
-);
+// The duplicated ActionButtons declaration has been removed correctly.
 
 const Orders = () => (
   <PageLayout title="Orders">
