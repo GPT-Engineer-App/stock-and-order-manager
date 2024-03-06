@@ -2,26 +2,30 @@ import { Box, Button, Heading, VStack, HStack, Divider, useDisclosure } from "@c
 import { FaPlus, FaPencilAlt, FaTrash, FaPrint } from "react-icons/fa";
 import ModalForm from "../components/ModalForm";
 
+import SearchFilter from "../components/SearchFilter";
+
 const ActionButtons = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isModalOpen, onOpen: onModalOpen, onClose: onModalClose } = useDisclosure();
+  const { isOpen: isSearchOpen, onOpen: onSearchOpen, onClose: onSearchClose } = useDisclosure();
 
   return (
     <>
       <HStack spacing={3}>
-        <Button leftIcon={<FaPlus />} colorScheme="green" onClick={onOpen}>
+        <Button leftIcon={<FaPlus />} colorScheme="green" onClick={onModalOpen}>
           Add New
         </Button>
-        <Button leftIcon={<FaPencilAlt />} colorScheme="blue">
+        <Button leftIcon={<FaPencilAlt />} colorScheme="blue" onClick={onSearchOpen}>
           Update
         </Button>
-        <Button leftIcon={<FaTrash />} colorScheme="red">
+        <Button leftIcon={<FaTrash />} colorScheme="red" onClick={onSearchOpen}>
           Delete
         </Button>
-        <Button leftIcon={<FaPrint />} colorScheme="purple">
+        <Button leftIcon={<FaPrint />} colorScheme="purple" onClick={onSearchOpen}>
           Print
         </Button>
       </HStack>
-      <ModalForm isOpen={isOpen} onClose={onClose} />
+      <ModalForm isOpen={isModalOpen} onClose={onModalClose} />
+      <SearchFilter isOpen={isSearchOpen} onClose={onSearchClose} />
     </>
   );
 };
